@@ -71,7 +71,11 @@
       display: flex;
       align-items: center;
       gap: 24px;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
+
+    .nav-links::-webkit-scrollbar { display: none; }
 
     .nav-links a {
       color: var(--muted);
@@ -92,7 +96,7 @@
     .hero-card {
       position: relative;
       overflow: hidden;
-      min-height: 470px;
+      min-height: 390px;
       padding: clamp(46px, 8vw, 88px);
       border: 1px solid rgba(255, 255, 255, 0.72);
       border-radius: 34px;
@@ -145,7 +149,7 @@
       z-index: 1;
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.7rem, 7vw, 5rem);
+      font-size: clamp(2.35rem, 5vw, 3.8rem);
       line-height: 1.05;
       letter-spacing: -0.035em;
     }
@@ -158,17 +162,6 @@
       letter-spacing: 0;
     }
 
-    .hero-copy {
-      position: relative;
-      z-index: 1;
-      max-width: 620px;
-      margin: 20px 0 0;
-      color: var(--muted);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(1.08rem, 2vw, 1.28rem);
-      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.95);
-    }
-
     main {
       width: min(980px, calc(100% - 40px));
       margin: 0 auto;
@@ -177,12 +170,137 @@
 
     section { scroll-margin-top: 96px; }
 
+    .content-section {
+      margin-top: 84px;
+      padding-top: 58px;
+      border-top: 1px solid var(--line);
+    }
+
+    .content-section:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+
     .section-heading {
       margin: 0 0 30px;
       font-family: Georgia, "Times New Roman", serif;
       font-size: clamp(2rem, 4vw, 2.7rem);
       line-height: 1.2;
       letter-spacing: -0.02em;
+    }
+
+    .about-card {
+      padding: clamp(25px, 4vw, 38px);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--paper);
+      box-shadow: 0 10px 30px rgba(49, 72, 112, 0.07);
+    }
+
+    .about-card p {
+      margin: 0;
+      color: #39475b;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      line-height: 1.85;
+    }
+
+    .about-card p + p { margin-top: 14px; }
+
+    .inline-link {
+      color: var(--blue-dark);
+      font-weight: 700;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    .inline-link:hover { color: var(--blue); }
+
+    .interests {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .interest {
+      padding: 11px 17px;
+      border: 1px solid rgba(49, 92, 189, 0.14);
+      border-radius: 999px;
+      color: #2d4f8d;
+      background: linear-gradient(135deg, #f7faff, #edf3ff);
+      font-weight: 720;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 155px 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline-date {
+      color: var(--blue);
+      font-size: 0.83rem;
+      font-weight: 850;
+      letter-spacing: 0.075em;
+      text-transform: uppercase;
+    }
+
+    .timeline-title {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.16rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .timeline-sub {
+      margin: 6px 0 0;
+      color: var(--muted);
+    }
+
+    .seminar-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .seminar-item {
+      min-height: 122px;
+      padding: 21px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: var(--paper);
+    }
+
+    .seminar-term {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .seminar-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      line-height: 1.4;
     }
 
     .publications {
@@ -308,11 +426,11 @@
 
     @media (max-width: 680px) {
       .nav-inner { height: 60px; }
-      .nav-links { gap: 14px; }
+      .nav-links { gap: 14px; max-width: 68%; }
       .nav-links a { font-size: 0.83rem; }
       .hero { padding: 48px 0 52px; }
       .hero-card {
-        min-height: 500px;
+        min-height: 455px;
         padding: 40px 28px 245px;
         border-radius: 25px;
         justify-content: flex-start;
@@ -323,6 +441,8 @@
       }
       h1 span { display: block; margin: 9px 0 0; }
       .paper { grid-template-columns: 1fr; gap: 5px; padding: 20px; }
+      .timeline-item { grid-template-columns: 1fr; gap: 6px; }
+      .seminar-grid { grid-template-columns: 1fr; }
       .talk { grid-template-columns: 1fr; gap: 6px; }
       .talks-section { margin-top: 64px; }
     }
@@ -344,8 +464,12 @@
     <div class="nav-inner">
       <a class="brand" href="#top">Ruiming Liang</a>
       <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
         <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
         <a href="#talks">Talks</a>
+        <a href="#seminar">Seminar</a>
       </div>
     </div>
   </nav>
@@ -354,13 +478,51 @@
     <div class="hero-card">
       <p class="eyebrow">Academic Homepage</p>
       <h1>Ruiming Liang <span>梁睿明</span></h1>
-      <p class="hero-copy">Publications, preprints, and selected academic talks.</p>
     </div>
   </header>
 
   <main>
-    <section id="publications" aria-labelledby="publications-heading">
-      <h2 class="section-heading" id="publications-heading">Publications &amp; Preprints</h2>
+    <section class="content-section" id="about" aria-labelledby="about-heading">
+      <h2 class="section-heading" id="about-heading">About Me</h2>
+      <div class="about-card">
+        <p>I am a Ph.D. student in Mathematics at <a class="inline-link" href="https://math.pku.edu.cn/" target="_blank" rel="noopener noreferrer">Peking University</a> under the supervision of Professor <a class="inline-link" href="https://tian.bicmr.pku.edu.cn/index.htm" target="_blank" rel="noopener noreferrer">Gang Tian</a>. My research lies at the intersection of Kähler geometry, geometric analysis, and algebraic geometry, with particular interests in collapsing geometry, metric degeneration, and analysis on singular spaces.</p>
+        <p>Here is my <a class="inline-link" href="https://drive.google.com/file/d/1iYwInMjm62J7Fmex-qs-xgc8vWg6VKRR/view?usp=sharing" target="_blank" rel="noopener noreferrer">CV</a>.</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="research" aria-labelledby="research-heading">
+      <h2 class="section-heading" id="research-heading">Research Interests</h2>
+      <ul class="interests">
+        <li class="interest">Kähler Geometry</li>
+        <li class="interest">Geometric Analysis</li>
+        <li class="interest">Algebraic Geometry</li>
+        <li class="interest">Collapsing Geometry</li>
+        <li class="interest">Metric Degeneration</li>
+        <li class="interest">Analysis on Singular Spaces</li>
+      </ul>
+    </section>
+
+    <section class="content-section" id="education" aria-labelledby="education-heading">
+      <h2 class="section-heading" id="education-heading">Education</h2>
+      <ol class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-date">Sep 2022 - Present</div>
+          <div>
+            <p class="timeline-title">Ph.D. in Mathematics, Peking University</p>
+            <p class="timeline-sub">Advisor: Professor Gang Tian</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-date">Sep 2018 - Jun 2022</div>
+          <div>
+            <p class="timeline-title">B.S. in Mathematics, Nanjing University</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="content-section" id="publications" aria-labelledby="publications-heading">
+      <h2 class="section-heading" id="publications-heading">Publications and Preprints</h2>
       <ol class="publications">
         <li class="paper">
           <div>
@@ -399,7 +561,20 @@
       </ol>
     </section>
 
-    <section class="talks-section" id="talks" aria-labelledby="talks-heading">
+    <section class="content-section" id="experience" aria-labelledby="experience-heading">
+      <h2 class="section-heading" id="experience-heading">Overseas Experience</h2>
+      <ol class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-date">Jan 2026 - Jun 2026</div>
+          <div>
+            <p class="timeline-title">Visiting Doctoral Researcher, University of Münster</p>
+            <p class="timeline-sub">Host: Professor Hans-Joachim Hein</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="content-section" id="talks" aria-labelledby="talks-heading">
       <h2 class="section-heading" id="talks-heading">Talks</h2>
       <ol class="talks">
         <li class="talk">
@@ -426,6 +601,32 @@
           </div>
         </li>
       </ol>
+    </section>
+
+    <section class="content-section" id="seminar" aria-labelledby="seminar-heading">
+      <h2 class="section-heading" id="seminar-heading">Seminar</h2>
+      <div class="seminar-grid">
+        <div class="seminar-item">
+          <span class="seminar-term">Fall 2025</span>
+          <div class="seminar-name">Topics in Mirror Symmetry</div>
+        </div>
+        <div class="seminar-item">
+          <span class="seminar-term">Spring 2025</span>
+          <div class="seminar-name">Topics in Mirror Symmetry</div>
+        </div>
+        <div class="seminar-item">
+          <span class="seminar-term">Fall 2024</span>
+          <div class="seminar-name">Several Topics on Complex Geometry</div>
+        </div>
+        <div class="seminar-item">
+          <span class="seminar-term">Spring 2023</span>
+          <div class="seminar-name">Compact Complex Surfaces</div>
+        </div>
+        <div class="seminar-item">
+          <span class="seminar-term">Fall 2022</span>
+          <div class="seminar-name">Kähler-Ricci Flow</div>
+        </div>
+      </div>
     </section>
   </main>
 
